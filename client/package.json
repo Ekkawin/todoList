@@ -10,12 +10,13 @@
     "react": "^16.13.1",
     "react-dom": "^16.13.1",
     "react-scripts": "3.4.3",
-    "tailwind": "^4.0.0"
+    "tailwind": "^4.0.0",
+    "tailwindcss": "^1.8.13"
   },
   "scripts": {
     "start": "react-scripts start",
-    "build": "react-scripts build",
-    "test": "react-scripts test",
+    "build:style": "tailwind build src/styles/styles.css -c tailwind.config.js -o src/styles/tailwind.css",
+    "dev": "yarn run build:style && yarn start",
     "eject": "react-scripts eject"
   },
   "eslintConfig": {
