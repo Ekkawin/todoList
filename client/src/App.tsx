@@ -14,7 +14,7 @@ import axios from 'axios'
 const onFinish = async(e) => {
   console.log('e', e)
   try {
-   const res =  await axios.create({  baseURL: 'https://localhost:3000'}).post('/api/addList', e)
+   const res =  await axios.create({ baseURL: 'http://localhost:5000', headers: {'Access-Control-Allow-Origin': '*'}},).post('/api/addList', e)
    console.log('res', res)
    
   }

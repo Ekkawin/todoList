@@ -16,7 +16,7 @@
   },
   "scripts": {
     "build": "tsc",
-    "start": "ts-node src/index.ts",
+    "start": "nodemon --watch 'src/**/*.ts' --ignore 'src/**/*.spec.ts' --exec 'ts-node' src/index.ts",
     "client": "npm run start --prefix client",
     "server": "nodemon index.js",
     "dev": "concurrently \"npm run client\" \"npm run server\""
