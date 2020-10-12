@@ -16,6 +16,11 @@ const app = express();
 
   // register routes
   console.log('connecting');
+  app.post('/api/addList',  (req, res) =>{
+    console.log('req', req)
+    console.log('res', res)
+    res.send(res)
+  })
 
   // start express server
   app.listen(6000);

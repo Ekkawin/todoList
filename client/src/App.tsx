@@ -5,13 +5,23 @@ import './styles/styles.css';
 import './styles/tailwind.css';
 import {PageWrapper} from './features/PageWrapper'
 import {Button, Input, Form} from 'antd'
+import axios from 'axios'
 
 
 
 
 
-const onFinish = (e) => {
+const onFinish = async(e) => {
   console.log('e', e)
+  try {
+   const res =  await axios.create({  baseURL: 'https://localhost:3000'}).post('/api/addList', e)
+   console.log('res', res)
+   
+  }
+  catch(error){
+
+    console.error(error)
+  }
 } 
 function App() {
 
