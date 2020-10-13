@@ -17,7 +17,7 @@ createConnection().then(async (connection) => {
   
   
   const app = createExpressServer({
-    classTransformer: true,
+    classTransformer: false,
     routePrefix:'/api',
     controllers: [UserController] // we specify controllers we want to use
  });
