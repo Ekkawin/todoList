@@ -3,13 +3,13 @@ import {findUser, createUser} from '../service/index'
 import {Task} from '../interfaces/index'
 
 
-@Controller("/user")
+@JsonController("/user")
 export class UserController {
  
     @Get("/:name")
     async getUser (@Param("name") name: string) {
         console.log('name', name)
-        const user = await findUser(name)
+        const user = await findUser({name})
         console.log("findUser");
         
         return user;
@@ -21,6 +21,6 @@ export class UserController {
          const user = await createUser(body)
          console.log("create User done");
          
-         return "create User"
+         return user
      }
 }

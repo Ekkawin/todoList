@@ -1,16 +1,24 @@
 import { getConnection, getRepository } from 'typeorm';
 import {User} from '../entity/User'
-import {Task} from '../interfaces/index'
+// import {Task} from '../interfaces/index'
+
+
+interface Task {
+    name:string,
+    date:string,
+    task:string
+}
 
 
 
 
-export const findUser = async (name:string) => {
+export const findUser = async (name: {name:string}) => {
+    console.log('name', name)
     try{
 
         const connection = await getConnection()
         const userRepository = await connection.getRepository(User)
-        const findUser = await userRepository.findOne({name})
+        const findUser = await userRepository.find(name)
         return findUser
         
     }
@@ -26,10 +34,10 @@ export const findUser = async (name:string) => {
 export const createUser = async (props:Task)=> {
 console.log('props', props)
     try{
-        // const connection = await getConnection()
-        // const userRepository = await connection.getRepository(User)
-        // const findUser = await userRepository.create(props)
-        return "createUser"
+        const connection = await getConnection()
+        const userRepository = await connection.getRepository(User)
+        const createUser = await userRepository.save(props)
+        return createUser
         
     }
     catch(error)

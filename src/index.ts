@@ -58,7 +58,7 @@ createConnection().then(async (connection) => {
 
     })
     app.get("/api/find/:id",  async (req, res)=> {
-      console.log('req.params', req.params)
+      console.log('req.params', req.params.id)
       const results = await userRepository.findOne(req.params.id);
       return res.send(results);
   });
