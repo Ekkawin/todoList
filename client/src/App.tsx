@@ -3,44 +3,36 @@ import React from 'react';
 import './App.css';
 import './styles/styles.css';
 import './styles/tailwind.css';
-import {PageWrapper} from './features/PageWrapper'
-import {Button, Input, Form} from 'antd'
-import axios from 'axios'
+import { Button, Input, Form } from 'antd';
+import axios from 'axios';
 
+import { PageWrapper } from './features/PageWrapper';
+import { TaskCard } from './features/TaskCard';
+import { TaskList } from './features/TaskList';
 
-
-
-
-const onFinish = async(e) => {
-  console.log('e', e)
+const onFinish = async (e) => {
+  console.log('e', e);
   try {
-   const res =  await axios.create({ baseURL: 'http://localhost:5000', headers: {'Access-Control-Allow-Origin': '*'}},).post('/api/addList', e)
-   console.log('res', res)
-   
+    const res = await axios
+      .create({
+        baseURL: 'http://localhost:5000',
+        headers: { 'Access-Control-Allow-Origin': '*' },
+      })
+      .post('/api/addList', e);
+    console.log('res', res);
+  } catch (error) {
+    console.error(error);
   }
-  catch(error){
-
-    console.error(error)
-  }
-} 
+};
 function App() {
-
-const [form] = Form.useForm()
+  const [form] = Form.useForm();
   return (
-<PageWrapper>
-  <Form form={form} onFinish = {onFinish}>
-    <div className="flex justify-center">
-    {/* <div className="flex"> */}
-      {/* <div>1</div> */}
-      {/* <div>2</div> */}
-      {/* <div>3</div> */}
-      {/* <div>4</div> */}
-      <Form.Item name="list">
-        <Input placeholder="ทำไร" />
-      </Form.Item>
-      <Button htmlType="submit">ส่ง</Button>
-    </div>
-    </Form>
+    <PageWrapper>
+      <div className="grid grid-cols-3 gap-4">
+        <TaskList date={'Today'} />
+        <TaskList date={'Tomorow'} />
+        <TaskList date={'UpComming'} />
+      </div>
     </PageWrapper>
   );
 }
