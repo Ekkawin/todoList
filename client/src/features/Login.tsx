@@ -1,14 +1,18 @@
 import React from 'react';
 import { PageWrapper } from './PageWrapper';
 import { Form, Input, Button } from 'antd';
+import { useHistory } from 'react-router-dom';
 
 import { Axios } from './axios';
 
-const onFinish = async (value) => {
-  console.log('value', value);
-};
 export const Login = () => {
+  const history = useHistory();
   const [form] = Form.useForm();
+
+  const onFinish = (value) => {
+    history.push(`/${value?.name}`);
+  };
+
   return (
     <PageWrapper>
       <Form form={form} onFinish={onFinish}>

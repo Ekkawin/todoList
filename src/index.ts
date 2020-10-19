@@ -17,13 +17,20 @@ createConnection().then(async (connection) => {
   
   
   const app = createExpressServer({
+    cors: {
+      "origin": "*",
+      "methods": "GET,HEAD,PUT,PATCH,POST,DELETE",
+      "preflightContinue": false,
+      "optionsSuccessStatus": 204
+      
+  },
     classTransformer: false,
     routePrefix:'/api',
     controllers: [UserController] // we specify controllers we want to use
  });
   
   
-  app.use(cors())
+  
   app.use((req, res, next) => {
     res.header('Access-Control-Allow-Origin', 'domain-a.com')
     res.header('Access-Control-Allow-Methods','POST, GET, PUT, PATCH, DELETE, OPTIONS')

@@ -58,54 +58,51 @@ export const TaskList = (props: Props) => {
           }
         `}
       />
-      {props.date}
+      Today
       <div className="flex flex-col items-center">
-        <Form onFinish={onFinish}>
-          <Form.List name="names">
-            {(fields, { add, remove }, { errors }) => {
-              return (
-                <div className="w-full">
-                  <Button
-                    className="w-full"
-                    css={css`
-                      background-color: #d9d9d9;
-                    `}
-                    onClick={() => {
-                      console.log('onClick');
-                      add();
-                    }}
-                  >
-                    +
-                  </Button>
-                  {fields.map((field, index) => (
-                    <Form.Item key={field.key}>
-                      <Form.Item
-                        {...field}
-                        validateTrigger={['onChange', 'onBlur']}
-                        noStyle
-                      >
-                        <Input className="px-2 py-4 rounded" />
-                      </Form.Item>
-                      {fields.length > 1 ? (
-                        <MinusCircleOutlined
-                          className="dynamic-delete-button"
-                          style={{ margin: '0 8px' }}
-                          onClick={() => {
-                            remove(field.name);
-                          }}
-                        />
-                      ) : null}
+        <Form.List name="names">
+          {(fields, { add, remove }, { errors }) => {
+            return (
+              <div className="w-full">
+                <Button
+                  className="w-full"
+                  css={css`
+                    background-color: #d9d9d9;
+                  `}
+                  onClick={() => {
+                    console.log('onClick');
+                    add();
+                  }}
+                >
+                  +
+                </Button>
+                {fields.map((field, index) => (
+                  <Form.Item key={field.key}>
+                    <Form.Item
+                      {...field}
+                      validateTrigger={['onChange', 'onBlur']}
+                      noStyle
+                    >
+                      <Input className="px-2 py-4 rounded" />
                     </Form.Item>
-                  ))}
-                  <Form.Item className="w-full">
-                    <Form.ErrorList errors={errors} />
+                    {fields.length > 1 ? (
+                      <MinusCircleOutlined
+                        className="dynamic-delete-button"
+                        style={{ margin: '0 8px' }}
+                        onClick={() => {
+                          remove(field.name);
+                        }}
+                      />
+                    ) : null}
                   </Form.Item>
-                </div>
-              );
-            }}
-          </Form.List>
-          <Button htmlType="submit">Save</Button>
-        </Form>
+                ))}
+                <Form.Item className="w-full">
+                  <Form.ErrorList errors={errors} />
+                </Form.Item>
+              </div>
+            );
+          }}
+        </Form.List>
       </div>
     </div>
   );
