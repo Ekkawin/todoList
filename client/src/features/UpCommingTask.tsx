@@ -19,7 +19,7 @@ interface Props {
   tasks: Task;
 }
 
-export const TaskList = (props: Props) => {
+export const UpCommingTask = (props: Props) => {
   const onFinish = async (values) => {
     //     switch (props.date) {
     //       case Date.TODAY:

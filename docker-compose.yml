@@ -9,5 +9,5 @@ services:
     ports:
       - 5432:5432
     volumes:
-      - .:/code
+      - ./volumes/db/:/var/lib/postgresql/data/
     restart: "always"

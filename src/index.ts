@@ -14,8 +14,6 @@ createConnection().then(async (connection) => {
   
 
   
-  
-  
   const app = createExpressServer({
     cors: {
       "origin": "*",
