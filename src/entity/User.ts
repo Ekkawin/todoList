@@ -1,18 +1,19 @@
-import {Entity, PrimaryGeneratedColumn, Column} from "typeorm";
+
+import { Task } from './Task'
+import {Entity, PrimaryGeneratedColumn, Column, ManyToMany, JoinTable} from "typeorm";
 
 @Entity()
 export class User {
 
-    @PrimaryGeneratedColumn()
-    id: number;
+    @Column({ primary: true, type: 'uuid', generated: 'uuid' })
+    userId: string;
 
     @Column()
-    name: string;
+    userName: string;
 
-    @Column()
-    date: string;
+    @ManyToMany (()=> Task, (task) => task.taskId)
+    @JoinTable()
+    tasks: Task[]
 
-    @Column()
-    task: string;
 
 }
