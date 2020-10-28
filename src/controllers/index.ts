@@ -8,7 +8,12 @@ import {
   Put,
   Delete,
 } from 'routing-controllers';
-import { findUser, createUser, updateUser } from '../service/index';
+import {
+  findUser,
+  createUser,
+  updateUser,
+  findUserByName,
+} from '../service/index';
 import { Task } from '../interfaces/index';
 
 @JsonController('/user')
@@ -17,6 +22,14 @@ export class UserController {
   async getUser() {
     // console.log('name', name);
     const user = await findUser();
+    // console.log('findUser');
+
+    return user;
+  }
+  @Get('/:name')
+  async getUserByName(@Param('name') param: string) {
+    // console.log('name', name);
+    const user = await findUserByName({ userName: param });
     // console.log('findUser');
 
     return user;

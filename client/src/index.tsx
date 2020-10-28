@@ -5,6 +5,10 @@ import App from './App';
 import 'antd/dist/antd.css';
 import * as serviceWorker from './serviceWorker';
 import { BrowserRouter } from 'react-router-dom';
+import moment from 'moment';
+import 'moment/locale/th';
+
+moment.locale('th');
 
 ReactDOM.render(
   <BrowserRouter>

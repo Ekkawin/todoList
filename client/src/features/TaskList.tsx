@@ -1,7 +1,7 @@
 /** @jsx jsx */
 import React from 'react';
 import { TaskCard } from './TaskCard';
-import { Button, Form, Input } from 'antd';
+import { Button, Form, Input, Card, Space } from 'antd';
 import { MinusCircleOutlined, PlusOutlined } from '@ant-design/icons';
 import { css, jsx, Global } from '@emotion/core';
 import moment from 'moment';
@@ -19,7 +19,9 @@ interface Props {
   tasks: Task;
 }
 
-export const TaskList = (props: Props) => {
+export const TaskList = (props: any) => {
+  console.log('hi');
+
   const onFinish = async (values) => {
     //     switch (props.date) {
     //       case Date.TODAY:
@@ -65,6 +67,9 @@ export const TaskList = (props: Props) => {
       <div className="flex flex-col items-center">
         <Form.List name={`task${props.date}`} key={`task${props.date}`}>
           {(fields, { add, remove }, { errors }) => {
+            console.log('props', props);
+
+            console.log('fields', fields);
             return (
               <div className="w-full">
                 <Button
@@ -79,26 +84,46 @@ export const TaskList = (props: Props) => {
                 >
                   +
                 </Button>
-                {fields.map((field, index) => (
-                  <Form.Item key={field.key}>
-                    <Form.Item
-                      {...field}
-                      validateTrigger={['onChange', 'onBlur']}
-                      noStyle
-                    >
-                      <Input className="px-2 py-4 rounded" />
-                    </Form.Item>
-                    {fields.length > 1 ? (
-                      <MinusCircleOutlined
-                        className="dynamic-delete-button"
-                        style={{ margin: '0 8px' }}
-                        onClick={() => {
-                          remove(field.name);
-                        }}
-                      />
-                    ) : null}
-                  </Form.Item>
-                ))}
+                {fields.map((field, index) => {
+                  console.log('field', field);
+                  return (
+                    <Card key={field.key}>
+                      <Form.Item
+                        {...field}
+                        name={[field.name, 'taskName']}
+                        fieldKey={[field.fieldKey, 'taskName']}
+                        validateTrigger={['onChange', 'onBlur']}
+                        noStyle
+                      >
+                        <Input key={1} className="px-2 py-4 rounded" />
+                      </Form.Item>
+
+                      <Form.Item
+                        {...field}
+                        name={[field.fieldKey, 'date']}
+                        fieldKey={[field.fieldKey, 'date']}
+                        validateTrigger={['onChange', 'onBlur']}
+                        noStyle
+                      >
+                        <Input
+                          key={2}
+                          disabled={true}
+                          className="px-2 py-4 rounded"
+                        />
+                      </Form.Item>
+
+                      {fields.length > 1 ? (
+                        <MinusCircleOutlined
+                          className="dynamic-delete-button"
+                          style={{ margin: '0 8px' }}
+                          onClick={() => {
+                            remove(field.name);
+                          }}
+                        />
+                      ) : null}
+                    </Card>
+                  );
+                })}
                 <Form.Item className="w-full">
                   <Form.ErrorList errors={errors} />
                 </Form.Item>

@@ -27,6 +27,14 @@ export const findUser = async () => {
     .getMany();
   return userRepo;
 };
+export const findUserByName = async ({ userName }) => {
+  const userRepo = await getRepository(User)
+    .createQueryBuilder('user')
+    .leftJoinAndSelect('user.tasks', 'task')
+    .where('user.userName = :userName', { userName: userName })
+    .getOne();
+  return userRepo;
+};
 
 export const createUser = async (props: { userName: string; tasks: any }) => {
   const newTasks = props?.tasks?.filter((task) => !task?.taskId);
