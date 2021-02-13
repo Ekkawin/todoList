@@ -71,7 +71,6 @@ createConnection().then(async (connection) => {
   //   await userRepository.save(user);
   //   await taskRepository.save(task);
 
-  //   res.send('done');
   // });
   app.post('/api/create/user', async (req, res) => {
     console.log('create User');
